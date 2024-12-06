@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {token} from "./Service/TokenService";
+import SearchField from "./Component/searchField";
 
 function App() {
-  return (
+    const [accessToken, setAccessToken] = useState('');
+    token().then((response) => {
+        setAccessToken(response);
+    });
+
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>Spotify API</h1>
+        <span>Access token: {accessToken}</span>
+        <SearchField token={accessToken} />
     </div>
-  );
+    );
 }
 
 export default App;

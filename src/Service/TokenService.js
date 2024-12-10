@@ -21,6 +21,7 @@ const getAccessToken = async () => {
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('expiryTime', expiryTime.toString());
+        window.location.reload();
     });
 }
 

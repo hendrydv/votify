@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { debounce } from 'lodash';
-import {searchSong} from "../Service/SpotifyService";
+import {searchSong} from "../Service/SearchService";
+import SearchResults from "./SearchResults";
 
-const Search = (token) => {
+const Search = ({token, addSong, getToken}) => {
     const [query, setQuery] = useState('');
     const [debouncedQuery, setDebouncedQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [showResults, setShowResults] = useState(false);
+
+    const searchRef = useRef(null);
 
     const handleSearch = (event) => {
-        setQuery(event.target.value);
+        const query = event.target.value;
+        setLoading(!!query);
+        setSearchResults([]);
+        setQuery(query);
     };
 
     useEffect(() => {
@@ -21,21 +30,39 @@ const Search = (token) => {
     useEffect(() => {
         if (debouncedQuery) {
             searchSong(debouncedQuery, token).then((response) => {
-                console.log(response);
+                setSearchResults(response.data.tracks.items);
+                setLoading(false);
+            }).catch(() => {
+                getToken();
+                setLoading(false);
             });
-            console.log('Zoeken naar:', debouncedQuery); // Hier kun je je zoekactie uitvoeren
         }
-    }, [debouncedQuery]);
+    }, [debouncedQuery, token, getToken]);
+
+    useEffect(() => {
+        document.addEventListener('click', (event) => {
+            if (searchRef.current && searchRef.current.contains(event.target)) {
+                return;
+            }
+
+            setShowResults(false);
+        });
+    }, []);
+
+    const resultsShown = query !== '' && showResults;
 
     return (
-        <div>
+        <div className="flex flex-col gap-2 mx-auto relative text-black w-full" ref={searchRef}>
             <input
-                type="text"
+                type="search"
                 value={query}
                 onChange={handleSearch}
-                placeholder="Zoek..."
+                onClick={() => setShowResults(true)}
+                placeholder="Zoek naar een nummer of artiest..."
+                className={`${resultsShown ? 'border-b-0 outline-none rounded-b-none' : ''} border border-gray-300 rounded-lg p-2`}
             />
-            <p>Debounced query: {debouncedQuery}</p>
+
+            {resultsShown && SearchResults({searchResults, addSong, loading, setShowResults})}
         </div>
     );
 };

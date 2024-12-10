@@ -18,16 +18,14 @@ function App() {
     }
 
     return (
-        <div className="bg-neutral-800 text-white min-h-screen">
-            <div className="max-w-screen-md mx-auto flex flex-col items-center text-center gap-4 p-8">
-                <h1 className="text-4xl font-bold">Caravan top 100</h1>
-                <img src={logo} alt="Caravan" className="w-1/2" />
-                <div className="flex flex-col gap-6 w-full">
-                    <SearchField token={accessToken} addSong={addSong} getToken={token} />
-                    <SavedSongs ref={savedSongsRef} />
-                </div>
-                <ToastContainer />
+        <div className="max-w-screen-md mx-auto flex flex-col items-center text-center gap-4 p-8">
+            <h1 className="text-4xl font-bold">Caravan top 100</h1>
+            <img src={logo} alt="Caravan" className="w-1/2" />
+            <div className="flex flex-col gap-6 w-full">
+                <SearchField token={accessToken} addSong={addSong} getToken={token} />
+                <SavedSongs ref={savedSongsRef} />
             </div>
+            <ToastContainer />
         </div>
     );
 }

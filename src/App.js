@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {token} from "./Service/TokenService";
 import SearchField from "./Component/SearchField";
 import logo from './Assets/cover.png';
@@ -6,8 +6,18 @@ import SavedSongs from "./Component/SavedSongs";
 import {ToastContainer} from "react-toastify";
 import InstagramSVG from "./Assets/instagramSVG";
 import FacebookSVG from "./Assets/facebookSVG";
+import { detectIncognito } from "detectincognitojs";
 
 function App() {
+    useEffect(() => {
+        detectIncognito().then((result) => {
+            if (result.isPrivate) {
+                alert("Incognito mode detected. Please disable incognito mode to use this application.");
+                window.location.href = "https://www.facebook.com/carbidploegfeankleaster";
+            }
+        });
+    }, []);
+
     const [accessToken, setAccessToken] = useState('');
     token().then((response) => {
         setAccessToken(response);

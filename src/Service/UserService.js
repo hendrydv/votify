@@ -1,15 +1,20 @@
-import browserSignature from 'browser-signature';
 import Cookies from 'js-cookie'
 
 const getSignature = () => {
-    const signature = Cookies.get('signature');
+    const signatureCookie = Cookies.get('newSignature');
+    const signatureStorage = localStorage.getItem('newSignature');
 
-    if (signature) {
-        return signature;
+    if (signatureStorage) {
+        return signatureStorage;
     }
 
-    const newSignature = browserSignature();
-    Cookies.set('signature', newSignature, { expires: 365 });
+    if (signatureCookie) {
+        return signatureCookie;
+    }
+
+    const newSignature = crypto.randomUUID()
+    Cookies.set('newSignature', newSignature, { expires: 365 });
+    localStorage.setItem('newSignature', newSignature);
 
     return newSignature;
 }

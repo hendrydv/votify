@@ -1,9 +1,11 @@
 import React, {useState, useRef} from 'react';
 import {token} from "./Service/TokenService";
 import SearchField from "./Component/SearchField";
-import logo from './Assets/logo.png';
+import logo from './Assets/cover.png';
 import SavedSongs from "./Component/SavedSongs";
 import {ToastContainer} from "react-toastify";
+import InstagramSVG from "./Assets/instagramSVG";
+import FacebookSVG from "./Assets/facebookSVG";
 
 function App() {
     const [accessToken, setAccessToken] = useState('');
@@ -19,8 +21,17 @@ function App() {
 
     return (
         <div className="max-w-screen-md mx-auto flex flex-col items-center text-center gap-4 p-8">
-            <h1 className="text-4xl font-bold">Caravan top 100</h1>
-            <img src={logo} alt="Caravan" className="w-1/2" />
+            <div className="flex justify-around">
+                <img src={logo} alt="Caravan" className="w-1/2" />
+                <div className="flex flex-col gap-2 justify-around items-center w-1/6">
+                    <a href="https://www.instagram.com/caravankz.nl/" target="_blank" rel="noreferrer">
+                        <InstagramSVG color="white" size="100%"/>
+                    </a>
+                    <a href="https://www.facebook.com/carbidploegfeankleaster" target="_blank" rel="noreferrer">
+                        <FacebookSVG color="white" size="100%"/>
+                    </a>
+                </div>
+            </div>
             <div className="flex flex-col gap-6 w-full">
                 <SearchField token={accessToken} addSong={addSong} getToken={token} />
                 <SavedSongs ref={savedSongsRef} />

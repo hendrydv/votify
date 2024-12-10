@@ -18,7 +18,6 @@ const SavedSongs = forwardRef((props, ref) => {
 
     useEffect(() => {
         get(`songs/${signature}`, (snapshot) => {
-            console.log(snapshot.val(), signature);
             if (snapshot.exists()) {
                 setSavedSongs(snapshot.val());
             }

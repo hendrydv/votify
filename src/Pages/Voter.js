@@ -1,14 +1,14 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {token} from "./Service/TokenService";
-import SearchField from "./Component/SearchField";
-import logo from './Assets/cover.png';
-import SavedSongs from "./Component/SavedSongs";
+import {token} from "../Service/TokenService";
+import SearchField from "../Component/SearchField";
+import logo from '../Assets/cover.png';
+import SavedSongs from "../Component/SavedSongs";
 import {ToastContainer} from "react-toastify";
-import InstagramSVG from "./Assets/instagramSVG";
-import FacebookSVG from "./Assets/facebookSVG";
+import InstagramSVG from "../Assets/instagramSVG";
+import FacebookSVG from "../Assets/facebookSVG";
 import { detectIncognito } from "detectincognitojs";
 
-function App() {
+function Voter() {
     useEffect(() => {
         detectIncognito().then((result) => {
             if (result.isPrivate) {
@@ -51,4 +51,4 @@ function App() {
     );
 }
 
-export default App;
+export default Voter;

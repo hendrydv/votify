@@ -9,6 +9,7 @@ import Voter from './Pages/Voter';
 import Dashboard from './Pages/Dashboard';
 import reportWebVitals from './reportWebVitals';
 import TimeOver from "./Pages/TimeOver";
+import Create from "./Pages/Create";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
             {/*<Route path="/" element={<Voter />} />*/}
             <Route path="/" element={<TimeOver />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/create" element={<Create />} />
         </Routes>
     </Router>
 );

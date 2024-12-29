@@ -17,8 +17,10 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2",
     "react-scripts": "5.0.1",
+    "react-sortablejs": "^6.1.4",
     "react-toastify": "^10.0.6",
     "request": "^2.88.2",
+    "sortablejs": "^1.15.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

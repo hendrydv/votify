@@ -15,8 +15,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Router>
         <Routes>
-            {/*<Route path="/" element={<Voter />} />*/}
-            <Route path="/" element={<TimeOver />} />
+            <Route path="/" element={<Voter />} />
+            {/*<Route path="/" element={<TimeOver />} />*/}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/create" element={<Create />} />
         </Routes>

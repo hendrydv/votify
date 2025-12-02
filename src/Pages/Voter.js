@@ -9,14 +9,14 @@ import FacebookSVG from "../Assets/facebookSVG";
 import { detectIncognito } from "detectincognitojs";
 
 function Voter() {
-    useEffect(() => {
-        detectIncognito().then((result) => {
-            if (result.isPrivate) {
-                alert("Incognito mode detected. Please disable incognito mode to use this application.");
-                window.location.href = "https://www.facebook.com/carbidploegfeankleaster";
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     detectIncognito().then((result) => {
+    //         if (result.isPrivate) {
+    //             alert("Incognito mode detected. Please disable incognito mode to use this application.");
+    //             window.location.href = "https://www.facebook.com/carbidploegfeankleaster";
+    //         }
+    //     });
+    // }, []);
 
     const [accessToken, setAccessToken] = useState('');
     token().then((response) => {

@@ -7,6 +7,7 @@ function Dashboard() {
 
     useEffect(() => {
         get('toplist', (snapshot) => {
+            console.log(snapshot);
             const toplist = snapshot.val();
             setTopList(toplist);
         });
